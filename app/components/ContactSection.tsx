@@ -83,6 +83,7 @@ export default function ContactSection() {
     'Microblading',
     'Styling',
     'Nails',
+    'Waxing',
   ]
 
   return (

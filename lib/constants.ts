@@ -57,7 +57,7 @@ export const HERO_CONTENT = {
 }
 
 export const GALLERY_SETTINGS = {
-  categories: ['All', 'Hair Extensions', 'Styling', 'Lashes', 'Brows', 'Beauty Treatments', 'Microblading', 'Nails'],
+  categories: ['All', 'Hair Extensions', 'Styling', 'Lashes', 'Brows', 'Beauty Treatments', 'Microblading', 'Nails', 'Waxing'],
   defaultImages: [
     {
       id: '1',

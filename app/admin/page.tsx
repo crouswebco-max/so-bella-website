@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '../../lib/supabase'
 import { isAdminEmail } from '../../lib/admin'
@@ -14,6 +14,16 @@ export default function AdminLogin() {
   const [loading, setLoading] = useState(false)
   const [linkLoading, setLinkLoading] = useState(false)
   const router = useRouter()
+
+  // Already signed in (e.g. via an emailed sign-in link)? Go straight to the dashboard.
+  useEffect(() => {
+    if (!supabase) return
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session && isAdminEmail(session.user?.email)) {
+        router.push('/admin/dashboard')
+      }
+    })
+  }, [router])
 
   // No password needed: emails a one-time sign-in link.
   const handleMagicLink = async () => {

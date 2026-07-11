@@ -85,6 +85,19 @@ const servicesData = [
       'Bridal packages',
     ],
   },
+  {
+    id: 7,
+    title: 'Nails',
+    description: 'Beautiful, long-lasting nails — from natural gel finishes to full acrylic sets.',
+    icon: '💅',
+    details: [
+      'Hard gel & BIAB',
+      'Acrylic sets',
+      'Gel nails & gel toes',
+      'Infills & maintenance',
+      'Nails that complete every look',
+    ],
+  },
 ]
 
 export default function ServicesSection() {

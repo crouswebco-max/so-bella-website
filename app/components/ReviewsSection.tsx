@@ -21,6 +21,7 @@ const serviceOptions = [
   'Brows',
   'Microblading',
   'Styling',
+  'Nails',
 ]
 
 export default function ReviewsSection() {

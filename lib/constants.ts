@@ -14,7 +14,7 @@ export const SITE_CONFIG = {
   description: 'Personal luxury beauty services from a dedicated solo stylist—tailored hair and beauty that makes you feel radiant.',
   email: 'contact.sobella@gmail.com',
   phone: '+44 7503 130010',
-  address: 'Warrington, Cheshire, UK',
+  address: 'Kawin Hair & Beauty Salon, 128 Longshaw Street, Warrington, WA5 0DG',
   businessHours: {
     monday: 'Closed',
     tuesday: '8:00 AM - 10:30 PM',
@@ -57,7 +57,7 @@ export const HERO_CONTENT = {
 }
 
 export const GALLERY_SETTINGS = {
-  categories: ['All', 'Hair Extensions', 'Styling', 'Lashes', 'Brows', 'Beauty Treatments', 'Microblading'],
+  categories: ['All', 'Hair Extensions', 'Styling', 'Lashes', 'Brows', 'Beauty Treatments', 'Microblading', 'Nails'],
   defaultImages: [
     {
       id: '1',

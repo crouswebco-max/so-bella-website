@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 import { FaTiktok, FaFacebook, FaInstagram } from 'react-icons/fa'
 import { useSiteContent, useWhatsAppUrl } from './SiteContentProvider'
 import SoBellaLogo from './SoBellaLogo'
@@ -8,6 +9,10 @@ import SoBellaLogo from './SoBellaLogo'
 export default function Footer() {
   const currentYear = new Date().getFullYear()
   const content = useSiteContent()
+  const pathname = usePathname()
+
+  // Keep the public footer off the admin area.
+  if (pathname?.startsWith('/admin')) return null
   const whatsappUrl = useWhatsAppUrl("Hi! I'd love to book an appointment.")
 
   const socialLinks = [

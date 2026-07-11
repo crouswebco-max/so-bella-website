@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Menu, X, ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useWhatsAppUrl } from './SiteContentProvider'
@@ -23,6 +24,10 @@ const navLinks = [
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const whatsappUrl = useWhatsAppUrl("Hi! I'd love to book an appointment.")
+  const pathname = usePathname()
+
+  // The admin area has its own header — keep the public navbar off it.
+  if (pathname?.startsWith('/admin')) return null
 
   const toggleMenu = () => setIsOpen(!isOpen)
 

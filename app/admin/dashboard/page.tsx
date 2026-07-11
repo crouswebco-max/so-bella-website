@@ -220,7 +220,7 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-beauty-white">
+    <div className="min-h-screen bg-blush/20">
       {/* Header */}
       <div className="bg-gradient-to-r from-blush via-cream to-blush border-b border-gold/20 px-4 sm:px-6 py-4 flex justify-between items-center">
         <div className="flex items-center gap-3">
@@ -247,7 +247,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Tabs */}
-      <div className="border-b border-gold/10 px-4 sm:px-6">
+      <div className="border-b border-gold/10 px-4 sm:px-6 bg-beauty-white/70 backdrop-blur">
         <div className="flex gap-4 sm:gap-8 overflow-x-auto no-scrollbar">
           {[
             { key: 'business', label: '🏢 My Details' },
@@ -274,6 +274,7 @@ export default function AdminDashboard() {
 
       {/* Content */}
       <div className="max-w-2xl mx-auto p-4 sm:p-6">
+        <div className="bg-beauty-white rounded-2xl border border-gold/15 shadow-sm p-5 sm:p-8">
         {/* Business Info */}
         {activeTab === 'business' && (
           <div className="space-y-6">
@@ -784,6 +785,7 @@ export default function AdminDashboard() {
               ? '💡 Photos and reviews update your website straight away — no Save button needed here.'
               : '💡 After making changes, press Save Changes and they appear on your website within a few seconds. Press "See my website" at the top to check.'}
           </p>
+        </div>
         </div>
       </div>
     </div>

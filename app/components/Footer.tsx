@@ -11,9 +11,10 @@ export default function Footer() {
   const content = useSiteContent()
   const pathname = usePathname()
 
+  const whatsappUrl = useWhatsAppUrl("Hi! I'd love to book an appointment.")
+
   // Keep the public footer off the admin area.
   if (pathname?.startsWith('/admin')) return null
-  const whatsappUrl = useWhatsAppUrl("Hi! I'd love to book an appointment.")
 
   const socialLinks = [
     { name: 'TikTok', url: content.social.tiktok, icon: FaTiktok },

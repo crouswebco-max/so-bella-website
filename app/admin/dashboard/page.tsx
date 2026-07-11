@@ -25,6 +25,28 @@ export default function AdminDashboard() {
   const [reviews, setReviews] = useState<Review[]>([])
   const [heroUploading, setHeroUploading] = useState(false)
   const [portraitUploading, setPortraitUploading] = useState(false)
+  const [newPassword, setNewPassword] = useState('')
+  const [passwordSaving, setPasswordSaving] = useState(false)
+  const [passwordMessage, setPasswordMessage] = useState('')
+
+  // Set a new password for the signed-in account (works because a session exists).
+  const handleSetPassword = async () => {
+    setPasswordMessage('')
+    if (!supabase) return
+    if (newPassword.length < 8) {
+      setPasswordMessage('Please use at least 8 characters.')
+      return
+    }
+    setPasswordSaving(true)
+    const { error } = await supabase.auth.updateUser({ password: newPassword })
+    setPasswordSaving(false)
+    if (error) {
+      setPasswordMessage("Couldn't update the password. Please try again.")
+    } else {
+      setNewPassword('')
+      setPasswordMessage('✅ Password updated! You can now sign in with it on any device.')
+    }
+  }
 
   const refreshGallery = async () => {
     const { getGalleryImages } = await import('../../../lib/supabase')
@@ -336,6 +358,34 @@ export default function AdminDashboard() {
                   onChange={handleChange}
                   className="w-full px-4 py-2 border border-gold/20 rounded-lg focus:outline-none focus:border-gold"
                 />
+              </div>
+
+              <div className="border-t border-gold/10 pt-4">
+                <h3 className="font-semibold text-beauty-black mb-1">Sign-in password</h3>
+                <p className="text-xs text-beauty-black/50 mb-2">
+                  Set a password here to sign in with email + password on any device.
+                  (You can always use the emailed sign-in link instead.)
+                </p>
+                <div className="flex flex-wrap gap-2 items-center">
+                  <input
+                    type="password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    placeholder="New password (min 8 characters)"
+                    autoComplete="new-password"
+                    className="px-4 py-2 border border-gold/20 rounded-lg focus:outline-none focus:border-gold text-sm w-64"
+                  />
+                  <button
+                    onClick={handleSetPassword}
+                    disabled={passwordSaving}
+                    className="px-4 py-2 text-sm font-semibold bg-beauty-black text-beauty-white rounded-lg hover:opacity-85 transition-all disabled:opacity-60"
+                  >
+                    {passwordSaving ? 'Saving…' : 'Set password'}
+                  </button>
+                </div>
+                {passwordMessage && (
+                  <p className="text-sm mt-2 text-beauty-black/70">{passwordMessage}</p>
+                )}
               </div>
 
               <div className="border-t border-gold/10 pt-4">

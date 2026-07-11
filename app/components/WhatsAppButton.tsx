@@ -2,10 +2,15 @@
 
 import { FaWhatsapp } from 'react-icons/fa'
 import { motion } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 import { useWhatsAppUrl } from './SiteContentProvider'
 
 export default function WhatsAppButton() {
   const whatsappUrl = useWhatsAppUrl("Hi! I'd love to book an appointment.")
+  const pathname = usePathname()
+
+  // Keep the booking bubble off the admin area.
+  if (pathname?.startsWith('/admin')) return null
 
   return (
     <motion.a

@@ -12,7 +12,55 @@ export default function AdminLogin() {
   const [message, setMessage] = useState('')
   const [isError, setIsError] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [linkLoading, setLinkLoading] = useState(false)
   const router = useRouter()
+
+  // No password needed: emails a one-time sign-in link.
+  const handleMagicLink = async () => {
+    setMessage('')
+    setIsError(false)
+
+    if (!supabase) {
+      setIsError(true)
+      setMessage('Login is not configured yet. Please contact your developer.')
+      return
+    }
+
+    if (!email) {
+      setIsError(true)
+      setMessage('Type your email above first, then press the link button.')
+      return
+    }
+
+    if (!isAdminEmail(email)) {
+      setIsError(true)
+      setMessage('This email is not authorised for admin access.')
+      return
+    }
+
+    setLinkLoading(true)
+    try {
+      const { error } = await supabase.auth.signInWithOtp({
+        email: email.trim(),
+        options: {
+          shouldCreateUser: false,
+          emailRedirectTo: `${window.location.origin}/admin/dashboard`,
+        },
+      })
+
+      if (error) {
+        setIsError(true)
+        setMessage("Couldn't send the link. Please try again in a minute.")
+      } else {
+        setMessage('Check your email! Click the link inside and you’ll be signed straight in.')
+      }
+    } catch {
+      setIsError(true)
+      setMessage('Something went wrong. Please try again.')
+    } finally {
+      setLinkLoading(false)
+    }
+  }
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -125,8 +173,23 @@ export default function AdminLogin() {
           </button>
         </form>
 
+        <div className="flex items-center gap-3 my-5">
+          <span className="h-px flex-1 bg-gold/20" />
+          <span className="text-xs text-beauty-black/40">or</span>
+          <span className="h-px flex-1 bg-gold/20" />
+        </div>
+
+        <button
+          type="button"
+          onClick={handleMagicLink}
+          disabled={linkLoading}
+          className="w-full py-3 border border-gold/30 text-beauty-black font-semibold rounded-xl hover:bg-blush/20 transition-luxury disabled:opacity-60"
+        >
+          {linkLoading ? 'Sending…' : '✉️ Forgot password? Email me a sign-in link'}
+        </button>
+
         <p className="text-xs text-beauty-black/40 text-center mt-6">
-          Trouble signing in? Contact your developer.
+          Type your email, press the button above, and click the link in your inbox — no password needed.
         </p>
       </div>
     </div>

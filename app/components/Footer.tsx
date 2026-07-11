@@ -45,10 +45,10 @@ export default function Footer() {
             <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-light">Quick Links</h4>
             <ul className="space-y-2">
               {[
-                { label: 'Home', href: '#home' },
-                { label: 'Services', href: '#services' },
-                { label: 'Gallery', href: '#gallery' },
-                { label: 'Contact', href: '#contact' },
+                { label: 'Home', href: '/#home' },
+                { label: 'Services', href: '/#services' },
+                { label: 'Gallery', href: '/#gallery' },
+                { label: 'Contact', href: '/#contact' },
               ].map((link) => (
                 <li key={link.href}>
                   <a
@@ -72,7 +72,7 @@ export default function Footer() {
             <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-light">Information</h4>
             <ul className="space-y-2">
               {[
-                { label: 'About Us', href: '#about' },
+                { label: 'About Us', href: '/#about' },
                 { label: 'Aftercare', href: '/aftercare' },
                 { label: 'Terms & Conditions', href: '/terms' },
                 { label: 'Privacy Policy', href: '/privacy' },

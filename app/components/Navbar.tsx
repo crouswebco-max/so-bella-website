@@ -7,16 +7,17 @@ import { motion } from 'framer-motion'
 import { useWhatsAppUrl } from './SiteContentProvider'
 import SoBellaLogo from './SoBellaLogo'
 
-// Navigation links configuration
+// Navigation links configuration.
+// Section links use "/#..." so they also work from subpages (Terms, Privacy, Aftercare).
 const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'Reviews', href: '#reviews' },
+  { label: 'Home', href: '/#home' },
+  { label: 'About', href: '/#about' },
+  { label: 'Services', href: '/#services' },
+  { label: 'Gallery', href: '/#gallery' },
+  { label: 'Reviews', href: '/#reviews' },
   { label: 'Aftercare', href: '/aftercare' },
   { label: 'Terms & Conditions', href: '/terms' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Contact', href: '/#contact' },
 ]
 
 export default function Navbar() {

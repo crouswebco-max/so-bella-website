@@ -24,21 +24,21 @@ export default function Home() {
   const bookingLink = '#visit'
 
   return (
-    <main>
+    <main id="top">
       <header className="nav-shell">
         <a href="#top" className="wordmark" aria-label="The Coastal Serenity Studio home">
           <span className="logo-shell" aria-hidden="true"><span className="logo-sun" /><span className="logo-tide logo-tide-one" /><span className="logo-tide logo-tide-two" /></span>
           <span className="wordmark-script">coastal</span>
           <span className="wordmark-main">SERENITY <i>STUDIO</i></span>
         </a>
-        <nav className={menuOpen ? 'nav-links nav-links-open' : 'nav-links'}>
+        <nav id="main-navigation" className={menuOpen ? 'nav-links nav-links-open' : 'nav-links'} aria-label="Main navigation">
           <a href="#story" onClick={() => setMenuOpen(false)}>Our story</a>
           <a href="#services" onClick={() => setMenuOpen(false)}>Treatments</a>
           <a href="#care" onClick={() => setMenuOpen(false)}>Aftercare</a>
           <a href="#visit" onClick={() => setMenuOpen(false)}>Find us</a>
           <a className="nav-book" href={bookingLink}>Book a moment <ArrowUpRight size={15} /></a>
         </nav>
-        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Close menu' : 'Open menu'}>
+        <button className="menu-toggle" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-expanded={menuOpen} aria-controls="main-navigation" aria-label={menuOpen ? 'Close menu' : 'Open menu'}>
           {menuOpen ? <X size={21} /> : <Menu size={21} />}
         </button>
       </header>
